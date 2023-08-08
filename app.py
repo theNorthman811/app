@@ -8,19 +8,18 @@ import pandas as pd
 import numpy as np
 from flask import Flask, request, render_template
 import joblib
-import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
+
+import joblib
 
 # Load the model
 model = joblib.load("best_model_svc.pkl")
 
 # Load the multilabel binarizer
-with open("binarizer.pkl", "rb") as file:
-    multilabel_binarizer = pickle.load(file)
+multilabel_binarizer = joblib.load("binarizer.pkl")
 
 # Load the TfidfVectorizer
-with open("vectorizer.pkl", "rb") as file:
-    vectorizer = pickle.load(file)
+vectorizer = joblib.load("vectorizer.pkl")
 
 # Create Flask app
 app = Flask(__name__)
